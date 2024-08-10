@@ -15,10 +15,10 @@ class Game:
 
     def player_move_right(self):
     # if self.player.rect.x < self.screen_rect.x - self.player.rect.x:
-        self.player.rect.x += self.player.velocity
+        self.player.rect.x += self.player.velocity_x
 
     def player_move_left(self):
     # if self.player.rect.x > 0:
-        self.player.rect.x -= self.player.velocity
+        self.player.rect.x -= self.player.velocity_x
         
 

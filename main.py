@@ -7,7 +7,7 @@ width = 800
 height = 600
 background = py.image.load('pictures/background.png')
 background = py.transform.scale(background, (width + 500, height))
-clock = py.time.Clock
+# clock = py.time.Clock
 
 
 
@@ -15,6 +15,7 @@ clock = py.time.Clock
 def main():
 
     running = True
+    jumping = False
     game = Game()
     rotation = -1
     while running:
@@ -35,10 +36,12 @@ def main():
                     game.player.turn()
                     rotation = -1
                 elif event.key == py.K_SPACE:
-                    print(1)
-                    
-                    
+                    jumping = True
 
+                    
+        if jumping:
+            game.player.jump()
+            
         keys = py.key.get_pressed()
         
         if keys[py.K_RIGHT]:
@@ -51,7 +54,7 @@ def main():
 
     
         game.screen.blit(background, (0, 0))
-        game.screen.blit(game.player.image,(game.player.rect.x,game.player.position_y))
+        game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
         py.display.set_caption('1st game')    
         py.display.flip()
 
