@@ -1,17 +1,16 @@
 import pygame as py
 
-image = py.image.load('pictures/NyanCat.webp')
+image_player = py.image.load('pictures/NyanCat.webp')
 
 class Player:
 
-    def __init__(self, name:str = 'ghost', velocity:int = 5):
+    def __init__(self, name:str = 'ghost', velocity:int = 7):
         self.name = name
-        self.image = py.transform.scale(image, (50, 60))
-        self.sol = 460
+        self.image = py.transform.scale(image_player, (70, 85))
+        self.sol = 445
         self.rect = self.image.get_rect()
         self.rect.y = self.sol
         self.rect.x = 250
-        self.sol = 460
         self.jump_height = 15
         self.velocity_x = velocity
         self.velocity_y = self.jump_height

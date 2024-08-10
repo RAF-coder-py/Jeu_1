@@ -1,7 +1,8 @@
 import pygame as py
 from game import Game
+from fire import Fire
 
-
+fire = Fire()
 
 width = 800
 height = 600
@@ -34,7 +35,7 @@ def main():
                     game.player.turn()
                     rotation = -1
 
-                elif event.key == py.K_SPACE:
+                elif event.key == py.K_UP:
                     game.player.jumping = True
 
                     
@@ -54,6 +55,7 @@ def main():
     
         game.screen.blit(background, (0, 0))
         game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
+        game.screen.blit(fire.image, (0, 0))
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)
