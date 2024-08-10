@@ -1,5 +1,5 @@
 import pygame as py
-from Jeu_1.game import Game
+from game import Game
 
 
 
