@@ -7,4 +7,4 @@ class Rectangle(py.sprite.Sprite):
         super().__init__()
         self.color = (54, 238, 54)
         self.length = 70 #length of player
-        self.height = 20 #height of player
+        self.height = 16.5 #height of player
