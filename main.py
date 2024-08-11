@@ -1,3 +1,4 @@
+import os
 import pygame as py
 from game import Game
 
@@ -52,14 +53,37 @@ def main():
             game.player_move_left(game.player)
             rotation = 0
  
-        game.player.all_fire.draw(surface=game.screen)
         game.screen.blit(background, (0, 0))
         game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
+
+
+        for fire in game.player.all_fire:
+
+            if fire.side == '':
+                if rotation == 1 or rotation == -1:
+                    fire.side = 'right'
+
+                elif rotation == 0:
+                    fire.side = 'left'
+
+            if fire.side == 'right':
+                fire.move_right()
+
+            else:
+                if not fire.confirmed:
+                    fire.rect.x = game.player.rect.x - 10 
+                    fire.confirmed = True
+                fire.move_left()
+
+        game.player.all_fire.draw(surface=game.screen) 
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)
+
     py.quit
 
 
 if __name__ == '__main__':
     main()
+    os.system('clear')
+

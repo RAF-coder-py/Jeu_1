@@ -19,7 +19,6 @@ class Player(py.sprite.Sprite):
         self.gravity = 1
         self.jumping = False
         self.all_fire = py.sprite.Group()
-        self.fire = Fire()
 
     def turn(self, rotation:bool = True):
         self.image = py.transform.flip(self.image, rotation, False)
@@ -34,5 +33,5 @@ class Player(py.sprite.Sprite):
             self.rect.y = self.sol
 
     def attack(self):
-        self.all_fire.add(self.fire)
+        self.all_fire.add(Fire(self))
  
