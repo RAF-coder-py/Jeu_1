@@ -1,8 +1,6 @@
 import pygame as py
 from game import Game
-from fire import Fire
 
-fire = Fire()
 
 width = 800
 height = 600
@@ -38,6 +36,8 @@ def main():
                 elif event.key == py.K_UP:
                     game.player.jumping = True
 
+                elif event.key == py.K_SPACE:
+                    game.player.attack()
                     
         if game.player.jumping:
             game.player.jump()
@@ -45,17 +45,16 @@ def main():
         keys = py.key.get_pressed()
         
         if keys[py.K_RIGHT]:
-            game.player_move_right()
+            game.player_move_right(game.player)
             rotation = 1
 
         elif keys[py.K_LEFT]:
-            game.player_move_left()
+            game.player_move_left(game.player)
             rotation = 0
-
-    
+ 
+        game.player.all_fire.draw(surface=game.screen)
         game.screen.blit(background, (0, 0))
         game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
-        game.screen.blit(fire.image, (0, 0))
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)

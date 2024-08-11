@@ -1,10 +1,12 @@
 import pygame as py
+from fire import Fire
 
 image_player = py.image.load('pictures/NyanCat.webp')
 
-class Player:
+class Player(py.sprite.Sprite):
 
     def __init__(self, name:str = 'ghost', velocity:int = 7):
+        super().__init__()
         self.name = name
         self.image = py.transform.scale(image_player, (70, 85))
         self.sol = 445
@@ -16,6 +18,8 @@ class Player:
         self.velocity_y = self.jump_height
         self.gravity = 1
         self.jumping = False
+        self.all_fire = py.sprite.Group()
+        self.fire = Fire()
 
     def turn(self, rotation:bool = True):
         self.image = py.transform.flip(self.image, rotation, False)
@@ -28,3 +32,7 @@ class Player:
             self.jumping = False
             self.velocity_y = self.jump_height
             self.rect.y = self.sol
+
+    def attack(self):
+        self.all_fire.add(self.fire)
+ 
