@@ -19,6 +19,8 @@ class Player(py.sprite.Sprite):
         self.gravity = 1
         self.jumping = False
         self.all_fire = py.sprite.Group()
+        self.original_health = 100
+        self.health = 100
 
     def turn(self, rotation:bool = True):
         self.image = py.transform.flip(self.image, rotation, False)
@@ -34,4 +36,3 @@ class Player(py.sprite.Sprite):
 
     def attack(self):
         self.all_fire.add(Fire(self))
- 

@@ -20,6 +20,3 @@ class Game:
     def player_move_left(self, player):
         if self.player.rect.x >= -10:
             self.player.rect.x -= self.player.velocity_x
-
-    # def player_attack(self, player):
-    #     self.screen.blit(self.fire.image, (self.player.rect.x +5, self.player.rect.y + 5))

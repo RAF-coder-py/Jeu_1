@@ -1,6 +1,7 @@
 import os
 import pygame as py
 from game import Game
+from green_rectangle import Rectangle
 
 
 width = 800
@@ -17,6 +18,8 @@ def main():
     running = True
     game = Game()
     rotation = -1
+    rectangle = Rectangle(game.player)
+
     while running:
         
 
@@ -55,6 +58,7 @@ def main():
  
         game.screen.blit(background, (0, 0))
         game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
+        py.draw.rect(game.screen, rectangle.color, (game.player.rect.x, game.player.rect.y - 30, int((game.player.health/game.player.original_health)*rectangle.length), rectangle.height))
 
 
         for fire in game.player.all_fire:
@@ -86,4 +90,3 @@ def main():
 if __name__ == '__main__':
     main()
     os.system('clear')
-
