@@ -15,8 +15,8 @@ frequence = 60
 def main():
 
     running = True
-    game = Game()
     rotation = -1
+    game = Game()
     g_rectangle = Green_Rectangle()
     w_rectangle = White_Rectangle()
 
@@ -27,16 +27,17 @@ def main():
         keys = py.key.get_pressed()
 
         if keys[py.K_RIGHT] and keys[py.K_LEFT]:
-            #do nothing
-            print('je ne fait rien')
+            game.player.dont_move()
         
         elif keys[py.K_RIGHT]:
             game.player_move_right(game.player)
             rotation = 1
+            game.player.image = game.player.image_right
 
         elif keys[py.K_LEFT]:
             game.player_move_left(game.player)
             rotation = 0
+            game.player.image = game.player.image_left
         
 #########################################   EVENTS   ############################################
         for event in py.event.get():
@@ -46,11 +47,9 @@ def main():
 
             elif event.type == py.KEYDOWN:
                 if rotation == 1 and event.key == py.K_LEFT:
-                    game.player.turn()
                     rotation = -1
                     
                 elif rotation == 0 and event.key == py.K_RIGHT:
-                    game.player.turn()
                     rotation = -1
 
                 elif event.key == py.K_UP:
@@ -89,7 +88,6 @@ def main():
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)
-        # print(keys[py.K_LEFT], keys[py.K_RIGHT])
 
     py.quit
 
