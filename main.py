@@ -73,45 +73,45 @@ def main():
             
 #########################################   FIRE  (player_1) ############################################
 
-        for fire in game.player_1.all_fire:
-            if not fire.given_side:
+        for fire_1 in game.player_1.all_fire:
+            if not fire_1.given_side:
                 if game.player_1.image == game.player_1.image_right:
-                    fire.side = 'left'
-                    fire.given_side = True
+                    fire_1.side = 'left'
+                    fire_1.given_side = True
 
                 elif game.player_1.image == game.player_1.image_left:
-                    fire.side = 'right'
-                    fire.given_side = True
+                    fire_1.side = 'right'
+                    fire_1.given_side = True
 
-            if fire.side == 'right':
-                fire.move_right()
+            if fire_1.side == 'right':
+                fire_1.move_right()
 
             else:
-                if not fire.confirmed:
-                    fire.rect.x = game.player_1.rect.x - 12 
-                    fire.confirmed = True
-                fire.move_left()
+                if not fire_1.confirmed:
+                    fire_1.rect.x = game.player_1.rect.x - 12 
+                    fire_1.confirmed = True
+                fire_1.move_left()
 
 #########################################   FIRE  (player_2) ############################################
 
-        for fire in game.player_2.all_fire:
-            if not fire.given_side:
+        for fire_2 in game.player_2.all_fire:
+            if not fire_2.given_side:
                 if game.player_2.image == game.player_2.image_right:
-                    fire.side = 'left'
-                    fire.given_side = True
+                    fire_2.side = 'right'
+                    fire_2.given_side = True
 
                 elif game.player_2.image == game.player_2.image_left:
-                    fire.side = 'right'
-                    fire.given_side = True
+                    fire_2.side = 'left'
+                    fire_2.given_side = True
 
-            if fire.side == 'right':
-                fire.move_right()
+            if fire_2.side == 'right':
+                fire_2.move_right()
 
             else:
-                if not fire.confirmed:
-                    fire.rect.x = game.player_2.rect.x - 12 
-                    fire.confirmed = True
-                fire.move_left()
+                if not fire_2.confirmed:
+                    fire_2.rect.x = game.player_2.rect.x - 12 
+                    fire_2.confirmed = True
+                fire_2.move_left()
 
 #########################################   DISPLAY   ############################################
         game.screen.blit(background, (0, 0))
@@ -120,6 +120,7 @@ def main():
         game.draw_rectangle(game.player_1)
         game.draw_rectangle(game.player_2)
         game.player_1.all_fire.draw(surface=game.screen) 
+        game.player_2.all_fire.draw(surface=game.screen)
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)
