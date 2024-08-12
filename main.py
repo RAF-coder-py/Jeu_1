@@ -21,8 +21,24 @@ def main():
     w_rectangle = White_Rectangle()
 
     while running:
-        
 
+#########################################   MOVE   ############################################
+           
+        keys = py.key.get_pressed()
+
+        if keys[py.K_RIGHT] and keys[py.K_LEFT]:
+            #do nothing
+            print('je ne fait rien')
+        
+        elif keys[py.K_RIGHT]:
+            game.player_move_right(game.player)
+            rotation = 1
+
+        elif keys[py.K_LEFT]:
+            game.player_move_left(game.player)
+            rotation = 0
+        
+#########################################   EVENTS   ############################################
         for event in py.event.get():
 
             if event.type == py.QUIT:
@@ -46,21 +62,7 @@ def main():
         if game.player.jumping:
             game.player.jump()
             
-        keys = py.key.get_pressed()
-        
-        if keys[py.K_RIGHT]:
-            game.player_move_right(game.player)
-            rotation = 1
-
-        elif keys[py.K_LEFT]:
-            game.player_move_left(game.player)
-            rotation = 0
- 
-        game.screen.blit(background, (0, 0))
-        game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
-        py.draw.rect(game.screen, w_rectangle.color, (game.player.rect.x-3, game.player.rect.y - 33, w_rectangle.length, w_rectangle.height))
-        py.draw.rect(game.screen, g_rectangle.color, (game.player.rect.x, game.player.rect.y - 30, int((game.player.health/game.player.original_health)*g_rectangle.length), g_rectangle.height))
-
+#########################################   FIRE   ############################################
         for fire in game.player.all_fire:
 
             if fire.side == '':
@@ -70,19 +72,24 @@ def main():
                 elif rotation == 0:
                     fire.side = 'left'
 
-            if fire.side == 'right':
+            elif fire.side == 'right':
                 fire.move_right()
 
             else:
                 if not fire.confirmed:
-                    fire.rect.x = game.player.rect.x - 10 
+                    fire.rect.x = game.player.rect.x - 12 
                     fire.confirmed = True
                 fire.move_left()
-
+#########################################   DISPLAY   ############################################
+        game.screen.blit(background, (0, 0))
+        game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
+        py.draw.rect(game.screen, w_rectangle.color, (game.player.rect.x-3, game.player.rect.y - 33, w_rectangle.length, w_rectangle.height))
+        py.draw.rect(game.screen, g_rectangle.color, (game.player.rect.x, game.player.rect.y - 30, int((game.player.health/game.player.original_health)*g_rectangle.length), g_rectangle.height))
         game.player.all_fire.draw(surface=game.screen) 
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)
+        # print(keys[py.K_LEFT], keys[py.K_RIGHT])
 
     py.quit
 

@@ -20,7 +20,8 @@ class Player(py.sprite.Sprite):
         self.jumping = False
         self.all_fire = py.sprite.Group()
         self.original_health = 100
-        self.health = 30
+        self.health = 100
+        self.side = ''
 
     def turn(self, rotation:bool = True):
         self.image = py.transform.flip(self.image, rotation, False)
