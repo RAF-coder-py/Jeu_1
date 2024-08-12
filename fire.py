@@ -17,6 +17,7 @@ class Fire(py.sprite.Sprite):
         self.original_image = self.image
         self.angle = 0
         self.rotatet_speed = 15
+        self.given_side = False
         self.confirmed = False
 
     def remove(self):

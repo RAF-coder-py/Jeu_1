@@ -17,8 +17,8 @@ def main():
     running = True
     rotation = -1
     game = Game()
-    g_rectangle = Green_Rectangle()
-    w_rectangle = White_Rectangle()
+    g_rectangle_1 = Green_Rectangle()
+    w_rectangle_1 = White_Rectangle()
 
     while running:
 
@@ -27,17 +27,17 @@ def main():
         keys = py.key.get_pressed()
 
         if keys[py.K_RIGHT] and keys[py.K_LEFT]:
-            game.player.dont_move()
+            game.player_1.dont_move()
         
         elif keys[py.K_RIGHT]:
-            game.player_move_right(game.player)
+            game.player_move_right(game.player_1)
             rotation = 1
-            game.player.image = game.player.image_right
+            game.player_1.image = game.player_1.image_right
 
         elif keys[py.K_LEFT]:
-            game.player_move_left(game.player)
+            game.player_move_left(game.player_1)
             rotation = 0
-            game.player.image = game.player.image_left
+            game.player_1.image = game.player_1.image_left
         
 #########################################   EVENTS   ############################################
         for event in py.event.get():
@@ -53,38 +53,38 @@ def main():
                     rotation = -1
 
                 elif event.key == py.K_UP:
-                    game.player.jumping = True
+                    game.player_1.jumping = True
 
                 elif event.key == py.K_SPACE:
-                    game.player.attack()
+                    game.player_1.attack()
                     
-        if game.player.jumping:
-            game.player.jump()
+        if game.player_1.jumping:
+            game.player_1.jump()
             
 #########################################   FIRE   ############################################
-        for fire in game.player.all_fire:
-
-            if fire.side == '':
-                if rotation == 1 or rotation == -1:
+        for fire in game.player_1.all_fire:
+            if not fire.given_side:
+                if game.player_1.image == game.player_1.image_right:
                     fire.side = 'right'
+                    fire.given_side = True
 
-                elif rotation == 0:
+                elif game.player_1.image == game.player_1.image_left:
                     fire.side = 'left'
+                    fire.given_side = True
 
-            elif fire.side == 'right':
+            if fire.side == 'right':
                 fire.move_right()
 
             else:
                 if not fire.confirmed:
-                    fire.rect.x = game.player.rect.x - 12 
+                    fire.rect.x = game.player_1.rect.x - 12 
                     fire.confirmed = True
                 fire.move_left()
 #########################################   DISPLAY   ############################################
         game.screen.blit(background, (0, 0))
-        game.screen.blit(game.player.image,(game.player.rect.x,game.player.rect.y))
-        py.draw.rect(game.screen, w_rectangle.color, (game.player.rect.x-3, game.player.rect.y - 33, w_rectangle.length, w_rectangle.height))
-        py.draw.rect(game.screen, g_rectangle.color, (game.player.rect.x, game.player.rect.y - 30, int((game.player.health/game.player.original_health)*g_rectangle.length), g_rectangle.height))
-        game.player.all_fire.draw(surface=game.screen) 
+        game.screen.blit(game.player_1.image,(game.player_1.rect.x,game.player_1.rect.y))
+        game.draw_rectangle(game.player_1)
+        game.player_1.all_fire.draw(surface=game.screen) 
         py.display.set_caption('1st game')    
         py.display.flip()
         clock.tick(frequence)

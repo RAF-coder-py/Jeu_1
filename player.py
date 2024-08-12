@@ -23,6 +23,7 @@ class Player(py.sprite.Sprite):
         self.original_health = 100
         self.health = 100
 
+
     def dont_move(self):
         self.rect.x = self.rect.x
 
