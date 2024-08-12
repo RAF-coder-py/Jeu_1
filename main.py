@@ -1,7 +1,6 @@
 import os
 import pygame as py
 from game import Game
-from rectangles import Green_Rectangle, White_Rectangle
 
 width = 800
 height = 600
@@ -15,10 +14,7 @@ frequence = 60
 def main():
 
     running = True
-    rotation = -1
     game = Game()
-    g_rectangle_1 = Green_Rectangle()
-    w_rectangle_1 = White_Rectangle()
 
     while running:
 
@@ -31,12 +27,10 @@ def main():
         
         elif keys[py.K_RIGHT]:
             game.player_move_right(game.player_1)
-            rotation = 1
             game.player_1.image = game.player_1.image_right
 
         elif keys[py.K_LEFT]:
             game.player_move_left(game.player_1)
-            rotation = 0
             game.player_1.image = game.player_1.image_left
         
 #########################################   EVENTS   ############################################
@@ -46,18 +40,13 @@ def main():
                 running = False
 
             elif event.type == py.KEYDOWN:
-                if rotation == 1 and event.key == py.K_LEFT:
-                    rotation = -1
-                    
-                elif rotation == 0 and event.key == py.K_RIGHT:
-                    rotation = -1
 
-                elif event.key == py.K_UP:
+                if event.key == py.K_UP:
                     game.player_1.jumping = True
 
                 elif event.key == py.K_SPACE:
                     game.player_1.attack()
-                    
+                        
         if game.player_1.jumping:
             game.player_1.jump()
             
