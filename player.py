@@ -1,19 +1,21 @@
 import pygame as py
 from fire import Fire
 
+image = py.image.load('pictures/NyanCat.webp')
+
 class Player(py.sprite.Sprite):
 
-    def __init__(self, name:str = 'ghost', velocity:int = 7):
+    
+
+    def __init__(self, velocity:int = 7, position_x:float = 200, image = py.transform.scale(image, (70, 85))):
         super().__init__()
-        self.name = name
-        self.image = py.image.load('pictures/NyanCat.webp')
-        self.image_right = py.transform.scale(self.image, (70, 85))
+        self.image_right = image
         self.image_left = py.transform.flip(self.image_right, True, False)
         self.image = self.image_right
         self.sol = 445
         self.rect = self.image.get_rect()
         self.rect.y = self.sol
-        self.rect.x = 250
+        self.rect.x = position_x
         self.jump_height = 15
         self.velocity_x = velocity
         self.velocity_y = self.jump_height

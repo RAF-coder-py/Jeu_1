@@ -27,11 +27,23 @@ def main():
         
         elif keys[py.K_RIGHT]:
             game.player_move_right(game.player_1)
-            game.player_1.image = game.player_1.image_right
+            game.player_1.image = game.player_1.image_left
 
         elif keys[py.K_LEFT]:
             game.player_move_left(game.player_1)
-            game.player_1.image = game.player_1.image_left
+            game.player_1.image = game.player_1.image_right
+
+        if keys[py.K_a] and keys[py.K_d]:
+            game.player_2.dont_move()
+
+        elif keys[py.K_d]:
+            game.player_move_right(game.player_2)
+            game.player_2.image = game.player_2.image_right
+
+        elif keys[py.K_a]:
+            game.player_move_left(game.player_2)
+            game.player_2.image = game.player_2.image_left
+
         
 #########################################   EVENTS   ############################################
         for event in py.event.get():
@@ -44,21 +56,31 @@ def main():
                 if event.key == py.K_UP:
                     game.player_1.jumping = True
 
-                elif event.key == py.K_SPACE:
+                if event.key == py.K_SPACE:
                     game.player_1.attack()
+
+                if event.key == py.K_w:
+                    game.player_2.jumping = True
+
+                if event.key == py.K_y:
+                    game.player_2.attack()
                         
         if game.player_1.jumping:
             game.player_1.jump()
+
+        if game.player_2.jumping:
+            game.player_2.jump()
             
-#########################################   FIRE   ############################################
+#########################################   FIRE  (player_1) ############################################
+
         for fire in game.player_1.all_fire:
             if not fire.given_side:
                 if game.player_1.image == game.player_1.image_right:
-                    fire.side = 'right'
+                    fire.side = 'left'
                     fire.given_side = True
 
                 elif game.player_1.image == game.player_1.image_left:
-                    fire.side = 'left'
+                    fire.side = 'right'
                     fire.given_side = True
 
             if fire.side == 'right':
@@ -69,10 +91,34 @@ def main():
                     fire.rect.x = game.player_1.rect.x - 12 
                     fire.confirmed = True
                 fire.move_left()
+
+#########################################   FIRE  (player_2) ############################################
+
+        for fire in game.player_2.all_fire:
+            if not fire.given_side:
+                if game.player_2.image == game.player_2.image_right:
+                    fire.side = 'left'
+                    fire.given_side = True
+
+                elif game.player_2.image == game.player_2.image_left:
+                    fire.side = 'right'
+                    fire.given_side = True
+
+            if fire.side == 'right':
+                fire.move_right()
+
+            else:
+                if not fire.confirmed:
+                    fire.rect.x = game.player_2.rect.x - 12 
+                    fire.confirmed = True
+                fire.move_left()
+
 #########################################   DISPLAY   ############################################
         game.screen.blit(background, (0, 0))
-        game.screen.blit(game.player_1.image,(game.player_1.rect.x,game.player_1.rect.y))
+        game.draw_player(game.player_1)
+        game.draw_player(game.player_2)
         game.draw_rectangle(game.player_1)
+        game.draw_rectangle(game.player_2)
         game.player_1.all_fire.draw(surface=game.screen) 
         py.display.set_caption('1st game')    
         py.display.flip()
