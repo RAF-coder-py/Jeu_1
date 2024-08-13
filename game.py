@@ -2,15 +2,15 @@ import pygame as py
 from player import Player
 from rectangles import White_Rectangle, Green_Rectangle
 
-image = py.image.load('pictures/NyanCat.webp')
-image = py.transform.scale(image, (70, 85))
+image = py.image.load('pictures/zombie.png')
+image = py.transform.scale(image, (100, 100))
 
 class Game:
 
 
     def __init__(self, width:int = 1080, height:int = 720):
         self.player_2 = Player()
-        self.player_1 = Player(position_x=800, image=py.transform.flip(image, True, False))
+        self.player_1 = Player(position_x=800, image=py.transform.flip(image, True, False), sol=535)
         self.screen = py.display.set_mode((width, height))
         self.screen_rect = self.screen.get_rect()
         self.w_rectangle = White_Rectangle()

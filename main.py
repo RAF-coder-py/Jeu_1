@@ -8,7 +8,7 @@ background = py.image.load('pictures/background.png')
 background = py.transform.scale(background, (width + 500, height))
 clock = py.time.Clock()
 frequence = 60
-
+ 
 
 
 def main():
@@ -94,8 +94,9 @@ def main():
             if fire_1.fire_collision(game.all_player_2):
                     game.player_1.all_fire.remove(fire_1)
                     game.player_2.health -= game.player_1.fire.damage
-                    if game.player_2.health < 0:
+                    if game.player_2.health <= 0:
                         game.player_2.health = 0
+                        running = False
 
 
 #########################################   FIRE  (player_2) ############################################
@@ -121,8 +122,9 @@ def main():
             if fire_2.fire_collision(game.all_player_1):
                 game.player_2.all_fire.remove(fire_2)
                 game.player_1.health -= game.player_2.fire.damage
-                if game.player_1.health < 0:
+                if game.player_1.health <= 0:
                     game.player_1.health = 0
+                    running = False
                 
 #########################################   DISPLAY   ############################################
         game.screen.blit(background, (0, 0))

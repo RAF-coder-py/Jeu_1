@@ -1,18 +1,18 @@
 import pygame as py
 from fire import Fire
 
-image = py.image.load('pictures/NyanCat.webp')
+image = py.image.load('pictures/enfant.png')
 
 class Player(py.sprite.Sprite):
 
     
 
-    def __init__(self, velocity:int = 7, position_x:float = 200, image = py.transform.scale(image, (70, 85))):
+    def __init__(self, velocity:int = 7, position_x:float = 200, image = py.transform.scale(image, (65, 75)), sol = 550):
         super().__init__()
         self.image_right = image
         self.image_left = py.transform.flip(self.image_right, True, False)
         self.image = self.image_right
-        self.sol = 550
+        self.sol = sol
         self.rect = self.image.get_rect()
         self.rect.y = self.sol
         self.rect.x = position_x

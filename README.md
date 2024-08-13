@@ -1,5 +1,6 @@
-# First Game
+# **First Game**
 
-### problems
+### **problems**
 - change map and figures
 - walls
+- health
