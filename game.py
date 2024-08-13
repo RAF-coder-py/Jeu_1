@@ -15,6 +15,10 @@ class Game:
         self.screen_rect = self.screen.get_rect()
         self.w_rectangle = White_Rectangle()
         self.g_rectangle = Green_Rectangle()
+        self.all_player_1 = py.sprite.Group()
+        self.all_player_1.add(self.player_1)
+        self.all_player_2 = py.sprite.Group()
+        self.all_player_2.add(self.player_2)
 
     def draw_player(self, player):
         self.screen.blit(player.image, (player.rect.x, player.rect.y))
@@ -30,3 +34,6 @@ class Game:
     def draw_rectangle(self, player):
         py.draw.rect(self.screen, self.w_rectangle.color, (player.rect.x-3, player.rect.y - 33, self.w_rectangle.length, self.w_rectangle.height))
         py.draw.rect(self.screen, self.g_rectangle.color, (player.rect.x, player.rect.y - 30, int((player.health/player.original_health)*self.g_rectangle.length), self.g_rectangle.height))
+
+    def check_collision(self, sprite, group):
+        return bool(py.sprite.spritecollide(sprite, group, False, py.sprite.collide_mask))

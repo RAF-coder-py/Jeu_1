@@ -19,6 +19,7 @@ class Fire(py.sprite.Sprite):
         self.rotatet_speed = 15
         self.given_side = False
         self.confirmed = False
+        self.damage = 8
 
     def remove(self):
         self.player.all_fire.remove(self)
@@ -47,3 +48,6 @@ class Fire(py.sprite.Sprite):
         self.rotate_left()
         if self.rect.x < -50:
             self.remove()
+
+    def fire_collision(self, group):
+        return bool(py.sprite.spritecollide(self, group, False, py.sprite.collide_mask))

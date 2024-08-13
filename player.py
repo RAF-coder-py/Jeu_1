@@ -12,7 +12,7 @@ class Player(py.sprite.Sprite):
         self.image_right = image
         self.image_left = py.transform.flip(self.image_right, True, False)
         self.image = self.image_right
-        self.sol = 445
+        self.sol = 550
         self.rect = self.image.get_rect()
         self.rect.y = self.sol
         self.rect.x = position_x
@@ -21,6 +21,7 @@ class Player(py.sprite.Sprite):
         self.velocity_y = self.jump_height
         self.gravity = 1
         self.jumping = False
+        self.fire = Fire(self)
         self.all_fire = py.sprite.Group()
         self.original_health = 100
         self.health = 100
