@@ -5,7 +5,7 @@ from game import Game
 width = 1080
 height = 720
 background = py.image.load('pictures/background.png')
-background = py.transform.scale(background, (width + 500, height))
+background = py.transform.scale(background, (width, height))
 clock = py.time.Clock()
 frequence = 60
  
@@ -14,7 +14,7 @@ frequence = 60
 def main():
 
     running = True
-    game = Game()
+    game = Game(width, height)
 
     while running:
 

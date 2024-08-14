@@ -1,6 +1,7 @@
 # **First Game**
 
 ### **problems**
-- change map and figures
+- change map
 - walls
 - health
+- add layers
