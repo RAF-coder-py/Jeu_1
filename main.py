@@ -11,7 +11,7 @@ frequence = 60
  
 
 
-def main():
+def main(): 
 
     running = True
     game = Game(width, height)
@@ -56,13 +56,13 @@ def main():
                 if event.key == py.K_UP:
                     game.player_1.jumping = True
 
-                if event.key == py.K_SPACE:
+                if event.key == py.K_RSHIFT:
                     game.player_1.attack()
 
                 if event.key == py.K_w:
                     game.player_2.jumping = True
 
-                if event.key == py.K_y:
+                if event.key == py.K_LSHIFT:
                     game.player_2.attack()
                         
         if game.player_1.jumping:
