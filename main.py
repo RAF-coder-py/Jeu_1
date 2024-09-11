@@ -4,7 +4,7 @@ from game import Game
 
 width = 1080
 height = 720
-background = py.image.load('jeu_docker/pictures/background.png')
+background = py.image.load('pictures/background.png')
 background = py.transform.scale(background, (width, height))
 clock = py.time.Clock()
 frequence = 60

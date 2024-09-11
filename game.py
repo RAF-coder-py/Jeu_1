@@ -2,7 +2,7 @@ import pygame as py
 from player import Player
 from rectangles import White_Rectangle, Green_Rectangle
 
-image = py.image.load('jeu_docker/pictures/zombie.png')
+image = py.image.load('pictures/zombie.png')
 image = py.transform.scale(image, (100, 100))
 
 class Game:

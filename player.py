@@ -1,7 +1,7 @@
 import pygame as py
 from fire import Fire
 
-image = py.image.load('jeu_docker/pictures/enfant.png')
+image = py.image.load('pictures/enfant.png')
 
 class Player(py.sprite.Sprite):
 

@@ -6,7 +6,7 @@ class Fire(py.sprite.Sprite):
 
     def __init__(self, player):
         super().__init__()
-        self.image= py.image.load('jeu_docker/pictures/fire.png')
+        self.image= py.image.load('pictures/fire.png')
         self.image = py.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.x = player.rect.x + 35
